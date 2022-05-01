@@ -139,7 +139,7 @@ enet_address_get_host (const ENetAddress * address, char * name, size_t nameLeng
 }
 
 int
-enet_socket_bind (ENetSocket socket, const ENetAddress * address)
+enet_socket_bind (ENetSocket socket, const ENetAddress * address,enet_uint16 sourceport)
 {
     struct sockaddr_in sin;
 
@@ -154,7 +154,7 @@ enet_socket_bind (ENetSocket socket, const ENetAddress * address)
     }
     else
     {
-       sin.sin_port = 0;
+       sin.sin_port = sourceport;
        sin.sin_addr.s_addr = INADDR_ANY;
     }
 
